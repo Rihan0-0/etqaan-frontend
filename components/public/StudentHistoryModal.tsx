@@ -52,6 +52,8 @@ const avatars = [
   { emoji: "🐯", bg: "from-orange-400 to-orange-600" },
   { emoji: "🐨", bg: "from-gray-300 to-gray-500" },
   { emoji: "🦊", bg: "from-orange-500 to-red-500" },
+  { emoji: "🐸", bg: "from-green-400 to-green-600" },
+  { emoji: "🐧", bg: "from-gray-700 to-gray-900" },
 ];
 
 function getAvatar(id: number, avatarIndex?: number) {
