@@ -141,7 +141,7 @@ export default function UpcomingLectures() {
         return allLectures.filter((lecture) => lecture.status === "completed");
       case "الجارية":
         return allLectures.filter(
-          (lecture) => lecture.status === "in-progress"
+          (lecture) => lecture.status === "in-progress",
         );
       default:
         return allLectures;
@@ -245,7 +245,7 @@ export default function UpcomingLectures() {
                 </div>
                 <span
                   className={`px-4 py-2 rounded-lg border font-arabic font-semibold ${getStatusColor(
-                    lecture.status
+                    lecture.status,
                   )}`}
                 >
                   {getStatusText(lecture.status)}
