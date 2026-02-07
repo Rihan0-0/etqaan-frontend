@@ -32,6 +32,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api-v1";
+const CHOREO_API_KEY = process.env.NEXT_PUBLIC_CHOREO_API_KEY || "";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -73,6 +74,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            ...(CHOREO_API_KEY && {
+              Authorization: `Bearer ${CHOREO_API_KEY}`,
+            }),
           },
           body: JSON.stringify({ email, password }),
         });

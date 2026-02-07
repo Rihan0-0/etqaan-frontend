@@ -5,9 +5,36 @@
 
 // Large pool of animal emojis (30 animals)
 const ANIMAL_EMOJIS = [
-  "🦁", "🐻", "🦉", "🐰", "🐱", "🐶", "🐼", "🐯", "🐨", "🦊",
-  "🐸", "🐧", "🦄", "🐵", "🐮", "🐷", "🦋", "🐝", "🐢", "🦆",
-  "🦅", "🦈", "🐙", "🦀", "🐘", "🦒", "🦘", "🦎", "🦩", "🦔",
+  "🦁",
+  "🐻",
+  "🦉",
+  "🐰",
+  "🐱",
+  "🐶",
+  "🐼",
+  "🐯",
+  "🐨",
+  "🦊",
+  "🐸",
+  "🐧",
+  "🦄",
+  "🐵",
+  "🐮",
+  "🐷",
+  "🦋",
+  "🐝",
+  "🐢",
+  "🦆",
+  "🦅",
+  "🦈",
+  "🐙",
+  "🦀",
+  "🐘",
+  "🦒",
+  "🦘",
+  "🦎",
+  "🦩",
+  "🦔",
 ];
 
 /**
@@ -39,9 +66,10 @@ export function getStudentAvatar(
   avatarIndex?: number,
 ): { emoji: string; bgStyle: string } {
   // Select emoji (cycles through 30 animals)
-  const emojiIndex = avatarIndex !== undefined 
-    ? avatarIndex % ANIMAL_EMOJIS.length 
-    : id % ANIMAL_EMOJIS.length;
+  const emojiIndex =
+    avatarIndex !== undefined
+      ? avatarIndex % ANIMAL_EMOJIS.length
+      : id % ANIMAL_EMOJIS.length;
   const emoji = ANIMAL_EMOJIS[emojiIndex];
 
   // Generate unique gradient colors based on ID
@@ -74,12 +102,14 @@ export function getStudentAvatarTailwind(
   id: number,
   avatarIndex?: number,
 ): { emoji: string; bg: string } {
-  const emojiIndex = avatarIndex !== undefined 
-    ? avatarIndex % ANIMAL_EMOJIS.length 
-    : id % ANIMAL_EMOJIS.length;
-  const bgIndex = avatarIndex !== undefined
-    ? avatarIndex % TAILWIND_GRADIENTS.length
-    : id % TAILWIND_GRADIENTS.length;
+  const emojiIndex =
+    avatarIndex !== undefined
+      ? avatarIndex % ANIMAL_EMOJIS.length
+      : id % ANIMAL_EMOJIS.length;
+  const bgIndex =
+    avatarIndex !== undefined
+      ? avatarIndex % TAILWIND_GRADIENTS.length
+      : id % TAILWIND_GRADIENTS.length;
 
   return {
     emoji: ANIMAL_EMOJIS[emojiIndex],
