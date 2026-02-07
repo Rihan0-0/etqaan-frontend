@@ -55,7 +55,7 @@ const avatars = [
 ];
 
 function getAvatar(id: number, avatarIndex?: number) {
-  const index = avatarIndex ?? id % avatars.length;
+  const index = avatarIndex !== undefined ? avatarIndex % avatars.length : id % avatars.length;
   return avatars[index];
 }
 
