@@ -6,11 +6,12 @@ import StudentFeedback from "@/components/instructor/StudentFeedback";
 import StudentsManagement from "@/components/instructor/StudentsManagement";
 import QuickStats from "@/components/instructor/QuickStats";
 
-export default function InstructorDashboard({
+export default async function InstructorDashboard({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   return (
     <div className="bg-gradient-to-br from-emerald-50 via-blue-50 to-indigo-50 min-h-screen relative">
       <BackgroundPattern />
@@ -20,7 +21,7 @@ export default function InstructorDashboard({
 
         <main className="p-6 max-w-7xl mx-auto">
           {/* Welcome Section */}
-          <InstructorOverview instructorId={params.id} />
+          <InstructorOverview instructorId={id} />
 
           {/* Quick Stats */}
           <QuickStats />

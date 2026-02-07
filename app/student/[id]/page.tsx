@@ -3,11 +3,12 @@ import WelcomeCard from "@/components/WelcomeCard";
 import InfoCards from "@/components/InfoCards";
 import BackgroundPattern from "@/components/BackgroundPattern";
 
-export default function StudentDashboard({
+export default async function StudentDashboard({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   return (
     <div className="bg-gradient-to-br from-orange-50 via-blue-50 to-purple-50 min-h-screen relative">
       <BackgroundPattern />

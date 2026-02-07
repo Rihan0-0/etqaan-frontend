@@ -73,7 +73,22 @@ export default function UpcomingLectures() {
   const generateWeeklyLectures = () => {
     const today = new Date();
     const currentDay = today.getDay();
-    const lectures = [];
+    const lectures: Array<{
+      id: number;
+      title: string;
+      dayOfWeek: number;
+      time: string;
+      students: number;
+      level: string;
+      room: string;
+      recurring: boolean;
+      date: Date;
+      dateString: string;
+      dayName: string;
+      status: string;
+      isToday: boolean;
+      isTomorrow: boolean;
+    }> = [];
 
     lectureTemplates.forEach((template) => {
       const lectureDate = new Date(today);
