@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Modal from "@/components/ui/Modal";
+import { getStudentAvatar } from "@/lib/avatarGenerator";
 
 interface DailyRecord {
   id: number;
@@ -38,27 +39,6 @@ interface StudentHistoryModalProps {
   } | null;
   batchStudentId?: number;
   batchId?: number;
-}
-
-// Cartoon avatars
-const avatars = [
-  { emoji: "🦁", bg: "from-amber-400 to-orange-500" },
-  { emoji: "🐻", bg: "from-amber-600 to-amber-800" },
-  { emoji: "🦉", bg: "from-purple-400 to-purple-600" },
-  { emoji: "🐰", bg: "from-pink-300 to-pink-500" },
-  { emoji: "🐱", bg: "from-orange-300 to-orange-500" },
-  { emoji: "🐶", bg: "from-yellow-400 to-amber-500" },
-  { emoji: "🐼", bg: "from-gray-400 to-gray-600" },
-  { emoji: "🐯", bg: "from-orange-400 to-orange-600" },
-  { emoji: "🐨", bg: "from-gray-300 to-gray-500" },
-  { emoji: "🦊", bg: "from-orange-500 to-red-500" },
-  { emoji: "🐸", bg: "from-green-400 to-green-600" },
-  { emoji: "🐧", bg: "from-gray-700 to-gray-900" },
-];
-
-function getAvatar(id: number, avatarIndex?: number) {
-  const index = avatarIndex !== undefined ? avatarIndex % avatars.length : id % avatars.length;
-  return avatars[index];
 }
 
 const gradeEmojis: Record<string, string> = {
@@ -134,7 +114,7 @@ export default function StudentHistoryModal({
 
   if (!isOpen || !student) return null;
 
-  const avatar = getAvatar(student.id, student.avatarIndex);
+  const avatar = getStudentAvatar(student.id, student.avatarIndex);
 
   return (
     <Modal
@@ -143,7 +123,8 @@ export default function StudentHistoryModal({
       title={
         <div className="flex items-center gap-4">
           <div
-            className={`w-12 h-12 bg-gradient-to-br ${avatar.bg} rounded-xl flex items-center justify-center shadow-lg`}
+            style={{ background: avatar.bgStyle }}
+            className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
           >
             <span className="text-2xl">{avatar.emoji}</span>
           </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { getStudentAvatar } from "@/lib/avatarGenerator";
+
 interface LeaderboardPreviewProps {
   students: {
     id: number;
@@ -8,27 +10,6 @@ interface LeaderboardPreviewProps {
     avatarIndex?: number;
   }[];
   onViewFull?: () => void;
-}
-
-// Cartoon animal avatars - same as StudentCard
-const avatars = [
-  { emoji: "🦁", bg: "from-amber-400 to-orange-500" },
-  { emoji: "🐻", bg: "from-amber-600 to-amber-800" },
-  { emoji: "🦉", bg: "from-purple-400 to-purple-600" },
-  { emoji: "🐰", bg: "from-pink-300 to-pink-500" },
-  { emoji: "🐱", bg: "from-orange-300 to-orange-500" },
-  { emoji: "🐶", bg: "from-yellow-400 to-amber-500" },
-  { emoji: "🐼", bg: "from-gray-400 to-gray-600" },
-  { emoji: "🐯", bg: "from-orange-400 to-orange-600" },
-  { emoji: "🐨", bg: "from-gray-300 to-gray-500" },
-  { emoji: "🦊", bg: "from-orange-500 to-red-500" },
-  { emoji: "🐸", bg: "from-green-400 to-green-600" },
-  { emoji: "🐧", bg: "from-gray-700 to-gray-900" },
-];
-
-function getAvatar(id: number, avatarIndex?: number) {
-  const index = avatarIndex !== undefined ? avatarIndex % avatars.length : id % avatars.length;
-  return avatars[index];
 }
 
 const podiumConfig = [
@@ -108,7 +89,7 @@ export default function LeaderboardPreview({
           const student = topThree[config.position - 1];
           if (!student) return null;
 
-          const avatar = getAvatar(student.id, student.avatarIndex);
+          const avatar = getStudentAvatar(student.id, student.avatarIndex);
 
           return (
             <div
@@ -118,7 +99,8 @@ export default function LeaderboardPreview({
             >
               {/* Avatar */}
               <div
-                className={`w-16 h-16 bg-gradient-to-br ${avatar.bg} rounded-2xl flex items-center justify-center shadow-lg mb-2 transform hover:scale-110 transition-transform`}
+                style={{ background: avatar.bgStyle }}
+                className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg mb-2 transform hover:scale-110 transition-transform"
               >
                 <span className="text-3xl">{avatar.emoji}</span>
               </div>
